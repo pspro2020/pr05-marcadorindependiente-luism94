@@ -1,7 +1,9 @@
 package codes;
 
 public class ScoreBoard {
-	//
+	//Clase Marcador que contiene los resultados de las tiradas de dado de los hilos secundarios
+	
+	//Variables contador de cada cara del dado
 	private int oneThrows = 0;
 	private int twoThrows = 0;
 	private int threeThrows = 0;
@@ -9,7 +11,7 @@ public class ScoreBoard {
 	private int fiveThrows = 0;
 	private int sixThrows = 0;
 
-	//
+	//Metodos get de cada contador
 	public int getOneThrows() {
 		return oneThrows;
 	}
@@ -29,7 +31,7 @@ public class ScoreBoard {
 		return sixThrows;
 	}
 	
-	//
+	//Metodos que calculan el valor de cada tirada por el numero de tiradas y el valor del numero del dado
 	public int getOneScore() {
 		return getOneThrows();
 	}
@@ -49,7 +51,10 @@ public class ScoreBoard {
 		return getSixThrows() * 6;
 	}
 	
-	//
+	/*Metodo SINCRONIZADO que se encarga de añadir una tirada mas al contador del valor recibido del dado
+	**Evita que se alteren los resultados forzando a que los demas hilos tengan que esperar al que llegue
+	**primero para modificar el contador oportuno
+	*/
 	public synchronized void updateScores(int throwScore) {
 		switch (throwScore) {
 		case 1:
@@ -72,7 +77,7 @@ public class ScoreBoard {
 			break;
 		}
 	}
-	
+	//Metodo que muestra el resultado de la ejecucion de todos los hilos mostrando el valor de cada contador
 	public void showDieThrows() {
 		System.out.println(" --- RESULTADO TIRADAS ---");
 		System.out.println();
@@ -87,7 +92,7 @@ public class ScoreBoard {
 				getThreeThrows(), getFourThrows(), getFiveThrows(), getSixThrows(),
 				getOneThrows() + getTwoThrows() + getThreeThrows() + getFourThrows() + getFiveThrows() + getSixThrows());
 	}
-	
+	//Metodo que muestra la puntuacion final dependiendo del valor del dado
 	public void showTotalScore() {
 		System.out.println("--- RESULTADO PUNTUACION ---");
 		System.out.println();

@@ -3,12 +3,9 @@ package codes;
 import java.util.Random;
 
 public class Die {
-	//
-	private int dieSide;
-	//
+	//Clase Dado que solo contiene un metodo para devolver el valor de una de sus caras de forma aleatoria
 	public int scoreThrow() {
-		Random rndmGenerator = new Random();
-		dieSide = rndmGenerator.nextInt(6) + 1;
-		return dieSide;
+		//Metodo de la clase dado que devuelve un valor aleatorio entre 1 y 6
+		return new Random().nextInt(6) + 1;
 	}
 }
